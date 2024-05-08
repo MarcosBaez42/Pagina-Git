@@ -8,42 +8,42 @@ const cuadros = [
     { img: './img/pant6.png', texto: 'Pantalon bota recta cuerina', precio: '85000' },
     { img: './img/pant7.png', texto: 'Pantalon bota recta de flores', precio: '62000' },
     { img: './img/pant8.png', texto: 'Pantalon cargo correa', precio: '80000' },
-  ];
-  
-  // Obtén el contenedor
-  const contenedor = document.getElementById('contenedor');
-  
-  // Genera dinámicamente los cuadros con imágenes, textos, precios y botones
-  cuadros.forEach((cuadro, index) => {
+];
+
+// Obtén el contenedor
+const contenedor = document.getElementById('contenedor');
+
+// Genera dinámicamente los cuadros con imágenes, textos, precios y botones
+cuadros.forEach((cuadro, index) => {
     const divCuadro = document.createElement('div');
     divCuadro.className = 'cuadro';
-  
+
     const img = document.createElement('img');
     img.className = `imgpant imgpant${index + 1}`;
     img.src = cuadro.img;
-  
+
     // Cambia la imagen al pasar el cursor
     img.addEventListener('mouseover', () => {
-      img.src = `./img/pant${index + 1}(2).png`;
+        img.src = `./img/pant${index + 1}(2).png`;
     });
-  
+
     // Restaura la imagen original al salir del cuadro
     img.addEventListener('mouseout', () => {
-      img.src = cuadro.img;
+        img.src = cuadro.img;
     });
-  
+
     const h3 = document.createElement('h3');
     h3.textContent = cuadro.texto;
-  
+
     const precio = Math.trunc(parseFloat(cuadro.precio)); // Convierte a número entero
-  
+
     const precioTexto = document.createElement('p');
     precioTexto.textContent = `Precio: $${formatearNumero(precio)}`;
-  
+
     const botonComprar = document.createElement('button');
     botonComprar.textContent = 'Agregar Al Carro';
     botonComprar.className = 'buttonComprar'; // Asigna la clase al botón
-  
+
     divCuadro.appendChild(img);
     divCuadro.appendChild(h3);
     divCuadro.appendChild(precioTexto);
@@ -143,13 +143,22 @@ document.querySelector('.carrito').addEventListener('click', () => {
     cesta.style.display = (cesta.style.display === 'none' || cesta.style.display === '') ? 'block' : 'none';
 });
 
-function vaciarCarrito() {
-    carrito.length = 0;
-    actualizarCarrito();
-}
+// function vaciarCarrito() {
+//     carrito.length = 0;
+//     actualizarCarrito();
+// }
 
 function comprarArticulos() {
     alert('¡Compra exitosa!');
     carrito.length = 0;
     actualizarCarrito();
+}
+
+
+// pruebas de funciones para el carrito
+// limpiar carrito con aviso
+function vaciarCarrito() {
+    carrito.length = 0;
+    actualizarCarrito();
+    alert("El carrito ha sido vaciado.");
 }
